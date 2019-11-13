@@ -26,15 +26,15 @@ with open(r"C:\\Users\\André\\CursoPyLadiesSP-master\\TRABALHO\\microdados_ed_b
             transportInf.append(0)
             transportPrim.append(0)
             transpotCrec.append(0)
-        if campos[67] == '2':
+        if campos[6] == '5':
             infantil[cidade.index(campos[77])] += 1
             if campos[24] == '1':
                 transportInf[cidade.index(campos[77])] += 1
-        elif campos[67] == '14':
+        elif campos[6] == '7':
             primario[cidade.index(campos[77])] += 1
             if campos[24] == '1':
                 transportPrim[cidade.index(campos[77])] += 1
-        elif campos[67] == '1':
+        elif campos[6] == '2':
             creche[cidade.index(campos[77])] += 1
             if campos[24] == '1':
                 transpotCrec[cidade.index(campos[77])] += 1
