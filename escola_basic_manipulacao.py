@@ -8,7 +8,7 @@ pd.options.display.max_columns = 90
 plt.locator_params(axis='y', nbins=6)
 plt.locator_params(axis='x', nbins=10)
 
-31
+
 def flutuante(x):
     if (x == ''):
         return 0
@@ -30,7 +30,6 @@ transpF = 0
 transpP = 0
 transfT = 0
 cidade = 0
-
 codigo_cid = []
 estado_list = []
 cidades_list = []
@@ -47,15 +46,15 @@ porc_creche = []
 porc_infantil=[]
 
 
-wrt2018 = open(
-    r"C:\\Users\\André\\CursoPyLadiesSP-master\\TRABALHO\\Educacao-Infantil_X_Enade\\escola-2018.txt")
+wrt2016 = open(
+    r"C:\\Users\\André\\CursoPyLadiesSP-master\\TRABALHO\\Educacao-Infantil_X_Enade\\escola-2016.txt")
 
 saeb2017 = open(
     r"C:\\Users\\André\\CursoPyLadiesSP-master\\TRABALHO\\Educacao-Infantil_X_Enade\\saeb-2017.csv")
 
 
 # ---------------------------------------------RASPAGEM ESCOLA-----------------------------------
-for campos in wrt2018:
+for campos in wrt2016:
     campos = campos.split(";")
     codigo_cid.append(campos[0])
     cidades_list.append(campos[1])
@@ -63,15 +62,14 @@ for campos in wrt2018:
     creche_list.append((campos[3]))
     infantil_list.append(campos[4])
     primario_list.append(campos[5])
-    porc_creche.append(100 if int(
-        campos[3])/int(campos[5])*100 > 100 else int(campos[3])/int(campos[5])*100)
+    porc_creche.append(100 if int(campos[3])/int(campos[5])*100 > 100 else int(campos[3])/int(campos[5])*100)
     porc_infantil.append(100 if int(
-        campos[3])/int(campos[4])*100 > 100 else int(campos[3])/int(campos[4])*100)
+        campos[4])/int(campos[5])*100 > 100 else int(campos[4])/int(campos[5])*100)
     transpCrec_list.append(int(campos[6]))
     transpF_list.append(int(campos[7]))
     transpP_list.append(int(campos[8]))
     transpTT_list.append(int(campos[9][:-1]))
-wrt2018.close()
+wrt2016.close()
 
 
 # ---------------------------------- SAEB----------------------
@@ -108,7 +106,7 @@ for notas in saeb2017:
 
 saeb2017.close()
 
-# ------------DATAFRAME DE ESCOLA
+# ------------CRIAÇÃO DATAFRAME DE ESCOLA
 df = pd.DataFrame({
     'Cidades': cidades_list,
     'Estado': estado_list,
@@ -122,7 +120,7 @@ df = pd.DataFrame({
 
 })
 
-# -----------DATAFRAME SAEB
+# -----------CRIAÇÃO DATAFRAME SAEB
 dfs = pd.DataFrame({
     'Cidade:': cidades_list,
     'Estado': estado_list,
@@ -152,30 +150,30 @@ dfF = pd.DataFrame({
 
 
 
-# --------------DATAFRAMES ESCOLA------------
+# --------------PRINT DATAFRAMES ESCOLA------------
 df.head(15)
 d = porcentagem_trans(df)
 # print(df.loc[df['Cidades'] == 'SAO PAULO'])
 # print(dfF.groupby(pd.cut(dfF['Alunos no Primario'],np.range()) TENTATIVA DE GROUP BY
 
 
-# ---------------DATAFRAMES SAEB--------------------
+# ---------------PRINT DATAFRAMES SAEB--------------------
 
 print("----------------COMECA SAEB ----------------"+"\n")
 
 dfF.head(15)
-# print(dfF.loc[dfF['Cidade:'] == 'SAO PAULO'])
+print(dfF.loc[dfF['Cidade:'] == 'SAO PAULO'])
 # print(dfs.loc[dfs['Cidade:'] == 'SAO CAETANO DO SUL'])
 
 
 # print(dfs.sample(10))
 
 
-# ------- GRAFICOS-------------------
+# ------- CRIAÇÃO DE GRAFICOS-------------------
 array_1 = np.array(cidades_list)
 array_2 = np.array(pro_mat_saeb)
-# plt.bar(array_1[:30], array_2[:30]) # delimito tamanho dos arrays para os 30 primeiros
-# plt.show()                          # exibe grafico
+plt.bar(array_1[:30], array_2[:30]) # delimito tamanho dos arrays para os 30 primeiros
+plt.show()                          # exibe grafico
 
 if(nao_achados > 0):
     print('nao achados = '+str(nao_achados))
