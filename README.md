@@ -12,11 +12,11 @@ http://download.inep.gov.br/microdados/microdados_saeb_2017.zip
 
 Para executar a analise seguir a seguinte ordem de execução dos notebooks:
 
-##Passo 1: 
+## Passo 1: 
 Ira extrair e tratar os dados das escolas e depois ira escrevelos num arquivo txt com nome "escola_2016.txt"
 
-##Passo 2:
+## Passo 2:
 Ira extrair e tratar os dados dos resultados das provas do SAEB e ira escrevelos num arquivo cvs com nome "saeb-2017.csv".
 
-##Passo 3:
+## Passo 3:
 Ira ler os arquivos contendo os dados das escolas, do resultado do saeb e da listas de nome de cidades e ira fazer a analise dos e apresentar os resultados.
