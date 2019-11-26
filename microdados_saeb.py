@@ -26,8 +26,8 @@ f = open(r"C:\Users\André\CursoPyLadiesSP-master\TRABALHO\microdados_saeb_2017\
 
 for campos in f:
     campos = campos.split(',')
-    if campos[2] == '35' or campos[2] == '33' or campos[2] == '32' or campos[2] == '31': # VERIFICO SE O ESTADO E DO SUDESTE
-        if campos[3] not in cidade_cod: # SE A CIDADE AINDA NÃO FOI ADICIONADA A LISTA, ADICIONO ELA E AS MEDIAS
+    if campos[2] == '35' or campos[2] == '33' or campos[2] == '32' or campos[2] == '31': # VERIFICA SE O ESTADO É DO SUDESTE
+        if campos[3] not in cidade_cod: # SE A CIDADE AINDA NÃO FOI ADICIONADA A LISTA, ADICIONO ELA E INICIALIZA OS CAMPOS.
             cidade_cod.append(campos[3])
             qt_aluno.append(0)
             qt_aluno[cidade_cod.index(campos[3])] += 1
@@ -55,18 +55,8 @@ for campos in f:
             elif campos[82] == 'C':
                 primario[cidade_cod.index(campos[3])] += 1
 
-# print(len(cidade_cod))
-# saeb2017 = open(
-#     "C:\\Users\\André\\CursoPyLadiesSP-master\\TRABALHO\\Educacao-Infantil_X_Enade\\saeb-2017.csv", "w")
-# cont = 0
-# for s in cidade_cod:
-#     saeb2017.writelines(s+';'+str(qt_aluno[cont])+';'+str(pro_port_saeb[cont]) + ';'+str(pro_mat_saeb[cont])
-#                         + ';'+str(creches[cont])+';' + str(preescola[cont])+';'+str(primario[cont])+"\n")
-#     cont += 1
 
-# saeb2017.close()
-
-print(len(cidade_cod))
+# COM OS DADOS JÁ SEPARADOS, ESCREVO NUM ARQUIVO CSV PARA MANIPULAR DE FORMA MAIS RÁPIDA E SIMPLES AS ÁNALISES
 saeb2017 = open(
     "C:\\Users\\André\\CursoPyLadiesSP-master\\TRABALHO\\Educacao-Infantil_X_Enade\\saeb-2017.csv", "w")
 cont = 0

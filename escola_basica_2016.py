@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# -----------ABRE E LE ARQUIVO COM NOMES DAS CIDADES----------
+# -----------ABRE E LE ARQUIVO COM NOMES DAS CIDADES E ESTADOS----------
 dados = open(
     r"C:\Users\André\CursoPyLadiesSP-master\TRABALHO\\Educacao-Infantil_X_Enade\\city.CSV")
 
@@ -17,7 +17,7 @@ with open(r"C:\\Users\\André\\CursoPyLadiesSP-master\\TRABALHO\\micro_censo_esc
     next(f)
     for campos in f:
         campos = campos.split("|")
-        # SE A CIDADE AINDA NÃO FOI ADICIONADA A LISTA, ADICIONO ELA E OS CAMPOS QUE ESTÃO NA MESMA LINHA
+        # SE A CIDADE AINDA NÃO FOI ADICIONADA A LISTA, ADICIONO ELA E INICIALIZO OS CAMPOS QUE ESTÃO NA MESMA LINHA
         if campos[77] not in cidade:
             cidade.append(campos[77])
             creche.append(0)
@@ -40,6 +40,8 @@ with open(r"C:\\Users\\André\\CursoPyLadiesSP-master\\TRABALHO\\micro_censo_esc
             if campos[24] == '1':
                 transpotCrec[cidade.index(campos[77])] += 1
 
+# INICIALIZO OS ARRAYS COM O TAMANHO DO ARRAY DO CODIGO DE CIDADE, ELE FUNCIONARA COMO UM 'PK', ASSIM SUA POSIÇÃO NO INDICE 
+# VINCULARÁ ELE AO NOME DA CIDADE E DO ESTADO.
 cidade_n = ["N/D"] * len(cidade)
 estado_n = ["N/D"] * len(cidade)
 for nome in dados:
